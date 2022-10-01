@@ -1,0 +1,9 @@
+public static partial class HDRToggle
+{
+    private enum DISPLAYCONFIG_ROTATION
+    {
+        DISPLAYCONFIG_ROTATION_IDENTITY = 1,
+        DISPLAYCONFIG_ROTATION_ROTATE90 = 2,
+        DISPLAYCONFIG_ROTATION_ROTATE180 = 3,
+    }
+}
