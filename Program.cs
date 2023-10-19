@@ -2,6 +2,8 @@
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 
+// if you want a single file build
+// dotnet publish -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true
 
 public static partial class HDRToggle
 {
@@ -53,9 +55,15 @@ public static partial class HDRToggle
         if (args.Any()) {
             string first = args.First();
 
-            if (bool.TryParse(first, out bool shouldEnable) && shouldEnable != hdrEnabled)
+            if (bool.TryParse(first, out bool shouldEnable))
             {
-                ToggleHDR();
+                if (shouldEnable != hdrEnabled)
+                {
+                    ToggleHDR();
+                } else {
+                    Console.WriteLine("Not Changing HDR.");
+                    Environment.ExitCode = -1;
+                }
             } else {
                 Console.WriteLine("Can't parse param, try true to enable or false to disable HDR.");
             }
